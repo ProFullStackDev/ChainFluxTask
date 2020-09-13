@@ -7,6 +7,8 @@ import {FlatList} from 'react-native-gesture-handler';
 const AnimatedFlatList = Animated.createAnimatedComponent (FlatList);
 
 const FeedComponent = ({data}) => {
+  const flatRef = createRef ();
+
   const [ani] = useState (new Animated.Value (-1));
   const renderItem = ({item, index}) => {
     return <CardComponent item={item} index={index} ani={ani} />;

@@ -13,19 +13,21 @@ import {
   FeedComponent,
   TrendingStories
 } from '../../components';
-import {getINDNews} from '../../api';
+import {getINDNews,getTechNews} from '../../api';
 import { NeuSpinner } from 'react-native-neu-element';
 import {Value, screenWidth, screenHeight} from '../../components/utils';
 
 
 const HomeScreen = () => {
   const [data, setData] = useState ([]);
-  const getData = () => {
-    getINDNews ().then (res => {
-      const d = res.data.articles
-      
-      setData (d);
-    });
+  const [techData,setTechData] = useState([])
+  const getData = async () => {
+    const news = await getINDNews ()
+    const techNews = await getTechNews()
+    
+
+      setData (news.data.articles);
+      setTechData(techNews.data.articles)
   };
   useEffect (() => {
     getData ();
@@ -58,7 +60,7 @@ const HomeScreen = () => {
         <Text style={{color: '#DA6370', fontStyle: 'italic'}}> News</Text>
       </Text>
       
-      {data.length > 0 ? <TrendingStories data={data}/>:<></>}
+      {techData.length > 0 ? <TrendingStories data={techData}/>:<></>}
 
       </ScrollView>
     </SafeAreaView>
