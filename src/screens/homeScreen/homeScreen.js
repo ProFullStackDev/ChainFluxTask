@@ -5,7 +5,7 @@ import {
   ScrollView,
   Platform,
   Text,
-  View,
+  View,Easing
 } from 'react-native';
 import {
   HeaderComponent,
@@ -14,7 +14,8 @@ import {
   TrendingStories
 } from '../../components';
 import {getINDNews} from '../../api';
-import {Value, screenWidth} from '../../components/utils';
+import { NeuSpinner } from 'react-native-neu-element';
+import {Value, screenWidth, screenHeight} from '../../components/utils';
 
 
 const HomeScreen = () => {
@@ -43,7 +44,15 @@ const HomeScreen = () => {
 
         <HeaderComponent />
         <NewsHeaderTitle />
-        {data.length > 0 ?<FeedComponent data={data} />:<></>}
+        {data.length > 0 ?<FeedComponent data={data} />:<View style={{height:screenHeight*0.6,justifyContent:'center',alignItems:'center'}}>
+        <NeuSpinner
+        color='#eef2f9'
+        size={Value(45)}
+        indicatorColor='#DA6370'
+        duration={1000}
+        easingType={Easing.linear}
+      />
+        </View>}
         <Text style={styles.headerTxt}>
         Trending
         <Text style={{color: '#DA6370', fontStyle: 'italic'}}> News</Text>

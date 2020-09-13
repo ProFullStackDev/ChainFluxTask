@@ -40,7 +40,7 @@ const FeedComponent = ({data}) => {
         contentContainerStyle={{
           marginVertical: Value (10),
           justifyContent: 'center',
-          paddingHorizontal: screenWidth * 0.31 / 2,
+          paddingHorizontal: screenWidth * 0.2 / 2,
         }}
         showsHorizontalScrollIndicator={false}
       />
